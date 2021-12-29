@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import datetime as dt
+import hutils as hu
 from pandas_datareader import data as pdr
 
 #yahoo finance sidestep

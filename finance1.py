@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import datetime as dt
+import hutils as hu
 from pandas_datareader import data as pdr
 
 yf.pdr_override()
@@ -82,59 +83,4 @@ for i in df.index:
         percentchange.append(pc)
     num += 1
 
-print(percentchange)
-
-## Calculating sucess of a strategy
-gains = 0
-ng = 0 #number of gains
-losses = 0
-nl = 0 #number of losses
-totalR = 1
-
-for i in percentchange:
-    if(i>0):
-        gains += i
-        ng += 1
-    else:
-        losses += i
-        nl += 1 
-    totalR = totalR * ((i / 100) + 1)
-
-totalR = round((totalR - 1) * 100, 2)
-
-if(ng > 0):
-    avgGain = gains / ng
-    maxR = str(max(percentchange))
-else:
-    avgGain = 0
-    maxR = "undefined"
-
-if(nl > 0):
-    avgLoss = losses / nl
-    maxL = str(min(percentchange))
-    ratio=str(-(avgGain / avgLoss))
-else:
-    avgLoss = 0
-    maxL = "undefined"
-    ratio = "infinite"
-
-if(ng > 0 or nl > 0):
-    battingAverage = ng / (ng + nl)
-else:
-    battingAverage = 0
-
-#Console Printing Output Summary
-print()
-print("Statistics results for " + stock + " going back to " + str(df.index[0]) + ", Sample size: " + str(ng + nl)) 
-print("EMAs used were " + str(emasUsed))
-print("Batting Average: " + str(battingAverage))
-print("Gain/Loss ratio: " + str(ratio))
-print("Average Gain: " + str(avgGain))
-print("Average Loss: " + str(avgLoss))
-print("Max Return: " + str(maxR))
-print("Max Loss: " + str(maxL))
-print("Total returns over " + str(ng + nl) + " trades: " + str(totalR) + "%")
-print()
-
-
-    
+hu.calc_sucess(percentchange, "Long Term EMA")
