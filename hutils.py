@@ -1,5 +1,5 @@
 ## Calculating sucess of a strategy
-def calc_sucess(pclist, strategyname, stockname):
+def summary_statistics(pclist, strategyname, stockname):
     gains = 0
     ng = 0 #number of gains
     losses = 0
