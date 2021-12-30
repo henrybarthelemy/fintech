@@ -40,7 +40,7 @@ def calc_sucess(pclist, strategyname, stockname):
 
     #Console Printing Output Summary
     print("----- ANALYSIS OF " + strategyname + " -----")
-    print("Statistics results for " + stockname + " going back to " + str(df.index[0]) + ", Sample size: " + str(ng + nl)) 
+    print("Statistics results for " + stockname + " with " + str(ng + nl) + " trades") 
     print("Batting Average: " + str(battingAverage))
     print("Gain/Loss ratio: " + str(ratio))
     print("Average Gain: " + str(avgGain))

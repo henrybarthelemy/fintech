@@ -83,4 +83,4 @@ for i in df.index:
         percentchange.append(pc)
     num += 1
 
-hu.calc_sucess(percentchange, "Long Term EMA")
+hu.calc_sucess(percentchange, "Long Term EMA", stock)

@@ -65,62 +65,7 @@ for i in df.index:
         percentChangeRSI.append(pc)
     num += 1 #adds on to the count of days handled
 
-print(percentChangeRSI)
-
-#Calculate efficiency of RSI strategy
-
-gains = 0
-ng = 0 #number of gains
-losses = 0
-nl = 0 #number of losses
-totalR = 1
-
-for i in percentChangeRSI:
-    if(i>0):
-        gains += i
-        ng += 1
-    else:
-        losses += i
-        nl += 1 
-    totalR = totalR * ((i / 100) + 1)
-
-totalR = round((totalR - 1) * 100, 2)
-
-if(ng > 0):
-    avgGain = gains / ng
-    maxR = str(max(percentChangeRSI))
-else:
-    avgGain = 0
-    maxR = "undefined"
-
-if(nl > 0):
-    avgLoss = losses / nl
-    maxL = str(min(percentChangeRSI))
-    ratio=str(-(avgGain / avgLoss))
-else:
-    avgLoss = 0
-    maxL = "undefined"
-    ratio = "infinite"
-if(ng > 0 or nl > 0):
-    battingAverage = ng / (ng + nl)
-else:
-    battingAverage = 0
-
-#Console Printing Output Summary
-print("------------ RSI STRAT ------------")
-print("Statistics results for " + stock + " going back to " + str(df.index[0]) + ", Sample size: " + str(ng + nl)) 
-print("RSI used was " + str(6))
-print("Batting Average: " + str(battingAverage))
-print("Gain/Loss ratio: " + str(ratio))
-print("Average Gain: " + str(avgGain))
-print("Average Loss: " + str(avgLoss))
-print("Max Return: " + str(maxR))
-print("Max Loss: " + str(maxL))
-print("Total returns over " + str(ng + nl) + " trades: " + str(totalR) + "%")
-print()
-print()
-
-
+hu.calc_sucess(percentChangeRSI, "Short Term RSI", stock)
 
 
 ## SHORT TERM EMA STRATEGY ##
@@ -157,58 +102,4 @@ for i in df.index:
         percentChange.append(pc)
     num += 1 #adds on to the count of days handled
 
-print(percentChange)
-
-
-
-## Calculating sucess of a strategy
-gains = 0
-ng = 0 #number of gains
-losses = 0
-nl = 0 #number of losses
-totalR = 1
-
-for i in percentChange:
-    if(i>0):
-        gains += i
-        ng += 1
-    else:
-        losses += i
-        nl += 1 
-    totalR = totalR * ((i / 100) + 1)
-
-totalR = round((totalR - 1) * 100, 2)
-
-if(ng > 0):
-    avgGain = gains / ng
-    maxR = str(max(percentChange))
-else:
-    avgGain = 0
-    maxR = "undefined"
-
-if(nl > 0):
-    avgLoss = losses / nl
-    maxL = str(min(percentChange))
-    ratio=str(-(avgGain / avgLoss))
-else:
-    avgLoss = 0
-    maxL = "undefined"
-    ratio = "infinite"
-
-if(ng > 0 or nl > 0):
-    battingAverage = ng / (ng + nl)
-else:
-    battingAverage = 0
-
-#Console Printing Output Summary
-print()
-print("Statistics results for " + stock + " going back to " + str(df.index[0]) + ", Sample size: " + str(ng + nl)) 
-print("EMAs used were " + str(emaList))
-print("Batting Average: " + str(battingAverage))
-print("Gain/Loss ratio: " + str(ratio))
-print("Average Gain: " + str(avgGain))
-print("Average Loss: " + str(avgLoss))
-print("Max Return: " + str(maxR))
-print("Max Loss: " + str(maxL))
-print("Total returns over " + str(ng + nl) + " trades: " + str(totalR) + "%")
-print()
+hu.calc_sucess(percentChange, "Short Term EMA", stock)
